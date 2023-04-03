@@ -74,8 +74,8 @@ const save = () => {
     </div>
     <ul class="pa-0 my-0 search-form__city-list">
       <li
-          v-for="(city, index) in showCities"
-          :key="index"
+          v-for="city in showCities"
+          :key="city.label"
           class="search-form__city-list-item d-flex align-center gap-3 pa-1 cursor-pointer"
           @click="selectCity(city)"
       >
