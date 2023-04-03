@@ -56,7 +56,7 @@ const save = () => {
     <span class="search-form__divider" />
     <div class="d-flex justify-space-between search-form__switch-wrapper">
       <div
-          class="d-flex align-center gap-4"
+          class="d-flex align-center search-form__show-selected"
       >
         <label class="switch">
           <input v-model="isOnlySelected" type="checkbox">
@@ -77,7 +77,7 @@ const save = () => {
       <li
           v-for="city in showCities"
           :key="city.label"
-          class="search-form__city-list-item d-flex align-center gap-3 pa-1 cursor-pointer"
+          class="search-form__city-list-item d-flex align-center gap-3 py-1 cursor-pointer"
           @click="selectCity(city)"
       >
         <label class="container-checkbox">
@@ -93,7 +93,7 @@ const save = () => {
       </li>
     </ul>
     <span class="search-form__divider" />
-    <div class="d-flex justify-end">
+    <div class="d-flex justify-end search-form__button-wrapper">
       <button
           class="search-form__button"
           @click="save"
@@ -110,7 +110,8 @@ $main-color: #232323;
 .search-form {
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 494px;
+  height: 446px;
 
   padding: 16px 20px;
   background: #FFFFFF;
@@ -124,9 +125,14 @@ $main-color: #232323;
   }
 
   &__switch-wrapper {
+    margin-top: 1px;
     @media screen and (max-width: 620px) {
       flex-direction: column;
     }
+  }
+
+  &__show-selected {
+    gap: 10px
   }
 
   &__input {
@@ -163,7 +169,7 @@ $main-color: #232323;
   }
 
   &__divider {
-    margin: 8px 0;
+    margin: 10px 0;
     height: 1px;
     background: #ECECEC;
   }
@@ -185,6 +191,8 @@ $main-color: #232323;
   }
 
   &__city-list {
+    margin-right: 3px;
+    margin-top: 4px;
     height: 240px;
     display: flex;
     flex-direction: column;
@@ -210,14 +218,26 @@ $main-color: #232323;
     }
   }
 
+  &__city-list-item {
+    font-size: 16px;
+    line-height: 16px;
+    color: #343434;
+  }
+
+  &__button-wrapper {
+    margin-top: 10px;
+  }
+
   &__button {
     position: relative;
     cursor: pointer;
     display: inline-block;
     padding: 8px 25px;
     background: #60D09B;
+    font-size: 16px;
+    line-height: 22px;
     color: #FFFFFF;
-    border-radius: 16px;
+    border-radius: 50px;
     border: none;
 
     &:hover {
@@ -312,7 +332,7 @@ $main-color: #232323;
 .switch {
   position: relative;
   display: inline-block;
-  width: 40px;
+  width: 36px;
   height: 22px;
 }
 
@@ -337,10 +357,10 @@ $main-color: #232323;
 .slider:before {
   position: absolute;
   content: "";
-  height: 15px;
-  width: 15px;
-  left: 4px;
-  bottom: 4px;
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  bottom: 2px;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
@@ -355,9 +375,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(17px);
-  -ms-transform: translateX(17px);
-  transform: translateX(17px);
+  -webkit-transform: translateX(14px);
+  -ms-transform: translateX(14px);
+  transform: translateX(14px);
 }
 
 .slider.round {
