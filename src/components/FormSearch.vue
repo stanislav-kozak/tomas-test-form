@@ -13,12 +13,13 @@ const searchString = ref('');
 const isOnlySelected = ref(false);
 
 const showCities = computed(() => {
+  const loverCaseSearchString = searchString.value.toLowerCase()
   if(searchString.value && isOnlySelected.value) {
-    return cities.filter(city => city.label.includes(searchString.value) && city.select);
+    return cities.filter(city => city.label.toLowerCase().includes(loverCaseSearchString) && city.select);
   }
 
   if(searchString.value) {
-    return cities.filter(city => city.label.includes(searchString.value));
+    return cities.filter(city => city.label.toLowerCase().includes(loverCaseSearchString));
   }
 
   if(isOnlySelected.value) {
