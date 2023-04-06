@@ -35,20 +35,27 @@ const selectCity = (city) => {
 }
 
 const clearAll = () => {
+  localStorage.removeItem('city')
   cities.forEach((item, index) => cities[index].select = false)
   searchString.value = '';
   isOnlySelected.value = false;
 }
 
 const save = () => {
-  console.log('Save city = ', cities.filter(city => city.select))
+  localStorage.setItem('city', JSON.stringify(cities.filter(city => city.select)))
 }
 
 const input = ref()
 
 onMounted(() => {
-  console.log('input.value.$el',input.value.$el)
-  input.value.$el.focus()
+  const saveCityStorage = localStorage.getItem('city')
+  const saveCity = saveCityStorage ? JSON.parse(saveCityStorage) : null
+  if (saveCity) {
+    for (const city of saveCity) {
+      selectCity(city)
+    }
+  }
+  input.value.focus()
 })
 </script>
 
